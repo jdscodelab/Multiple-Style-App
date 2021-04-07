@@ -1,0 +1,81 @@
+﻿<Window x:Class="MultipleStyleApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MultipleStyleApp"
+        xmlns:AutomationProperties="clr-namespace:MultipleStyleApp.Properties"
+        mc:Ignorable="d"
+        Title="Multiple Style App" Height="400" Width="470.391"
+        Background="Gray">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid
+            Rows="2"
+            Margin="5">
+
+            <StackPanel
+                Orientation="Horizontal">
+                <Button
+                    Content="Primary"
+                    Style="{DynamicResource PrimaryButtonStyle}"/>
+                <Button
+                    Content="Secondary"
+                    Margin="20,0"
+                    Style="{DynamicResource SecondaryButtonStyle}"/>
+                <Button
+                    Content="Submit"
+                    Style="{DynamicResource SubmitButtonStyle}"/>
+            </StackPanel>
+
+            <!--Menu Buttons-->
+            <StackPanel
+                Orientation="Vertical"
+                Margin="0,10">
+                <RadioButton
+                    Content="Menu Button 1"
+                    GroupName="Menu"
+                    IsChecked="True"
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Tag="M12 2.0996094L1 12L4 12L4 21L10 21L10 15L14 15L14 21L20 21L20 12L23 12L12 2.0996094 z"/>
+                <RadioButton
+                    Content="Menu Button 2"
+                    Margin="0,5"
+                    GroupName="Menu"
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Tag="M12.714,2.025C6.629,1.603,1.603,6.628,2.025,12.713C2.392,18.002,7.006,22,12.307,22H13c1.105,0,2-0.895,2-2v-3 c0-1.105,0.895-2,2-2h3c1.105,0,2-0.895,2-2v-0.693C22,7.006,18.002,2.392,12.714,2.025z M10.5,4C11.328,4,12,4.672,12,5.5 S11.328,7,10.5,7S9,6.328,9,5.5S9.672,4,10.5,4z M5.5,15C4.672,15,4,14.328,4,13.5S4.672,12,5.5,12S7,12.672,7,13.5 S6.328,15,5.5,15z M6.5,10C5.672,10,5,9.328,5,8.5S5.672,7,6.5,7S8,7.672,8,8.5S7.328,10,6.5,10z M11,20c-1.105,0-2-0.895-2-2 c0-1.105,0.895-2,2-2s2,0.895,2,2C13,19.105,12.105,20,11,20z M15.5,8C14.672,8,14,7.328,14,6.5S14.672,5,15.5,5S17,5.672,17,6.5 S16.328,8,15.5,8z M18.5,13c-0.828,0-1.5-0.672-1.5-1.5s0.672-1.5,1.5-1.5s1.5,0.672,1.5,1.5S19.328,13,18.5,13z"/>
+                <RadioButton
+                    Content="Menu Button 3"
+                    GroupName="Menu"
+                    Style="{DynamicResource MenuButtonStyle}"
+                    Tag="M9 4C7.355469 4 6 5.355469 6 7L6 25C6 26.644531 7.355469 28 9 28L26 28L26 4 Z M 9 6L24 6L24 22L9 22C8.648438 22 8.316406 22.074219 8 22.1875L8 7C8 6.433594 8.433594 6 9 6 Z M 11 9L11 11L22 11L22 9 Z M 9 24L24 24L24 26L9 26C8.433594 26 8 25.566406 8 25C8 24.433594 8.433594 24 9 24Z"/>
+            </StackPanel>
+        </UniformGrid>
+
+        <Grid Column="1">
+            <StackPanel Orientation="Vertical"
+                        Margin="5">
+                <ComboBox
+                    x:Name="ThemeSelectorCB"
+                    SelectedValuePath="Content"
+                    SelectedValue="{Binding CurrentTheme, Source={x:Static AutomationProperties:Settings.Default}, Mode=OneWay}">
+                    <ComboBox.Items>
+                        <ComboBoxItem
+                            Content="Default"/>
+                        <ComboBoxItem
+                            Content="Flat"/>
+                        <ComboBoxItem
+                            Content="Modern"/>
+                    </ComboBox.Items>
+                </ComboBox>
+                <Button
+                    Content="Apply Style"
+                    Margin="0,5"
+                    Style="{DynamicResource SubmitButtonStyle}" Click="Button_Click"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
